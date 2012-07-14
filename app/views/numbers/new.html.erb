@@ -1,0 +1,37 @@
+<%= form_for("", :method => :get) do |f| %>
+  <div class="field">
+    <%= f.label :in_postal_code %>
+    <%= f.text_field :in_postal_code %>
+  </div>
+
+  <div class="field">
+    <%= f.label :near_number %>
+    <%= f.text_field :near_number %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+<br>
+<div class="span6">
+  <table class="table">
+    <tr>
+      <th>Number</td>
+      <th></th>
+    </tr>
+    <% @numbers.each do |number| %>
+      <%= form_for(@number) do |f| %>
+      <tr>
+        <td><%= number.friendly_name %></td>
+        <td>
+            <%= f.hidden_field :name, value: number.friendly_name %>
+            <%= f.hidden_field :number, value: number.phone_number %>
+            <%= f.submit "Buy" %>
+        </td>
+      </tr>
+      <% end %>
+    <% end %>
+  </table>
+</div>

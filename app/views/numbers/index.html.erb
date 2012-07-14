@@ -1,0 +1,15 @@
+<div class="well">
+  <%= link_to "New", new_number_path, class: "btn" %>
+</div>
+
+<table class="table">
+  <% @numbers.each do |number| %>
+    <tr>
+      <td><%= number.name %></td>
+      <td><%= number.number %></td>
+      <td><%= link_to "Edit", edit_number_path(number) %></td>
+      <td><%= link_to "Delete", number, confirm: 'Are you sure?', method: :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
