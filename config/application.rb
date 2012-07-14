@@ -58,5 +58,7 @@ module Littlebirdy
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+
+    require File.expand_path('../config', __FILE__)
   end
 end
