@@ -11,7 +11,7 @@
   </tr>
   <% @mailboxes.each do |mailbox| %>
     <tr>
-      <td><%= mailbox.name %></td>
+      <td><%= link_to mailbox.name, mailbox %></td>
       <% if admin? %><td><%= mailbox.user.name %></td><% end %>
       <td><%= link_to "Edit", edit_mailbox_path(mailbox) %></td>
       <td><%= link_to "Delete", mailbox, confirm: 'Are you sure?', method: :delete %></td>

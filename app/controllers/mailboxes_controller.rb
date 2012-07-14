@@ -21,6 +21,10 @@ class MailboxesController < ApplicationController
     @mailbox = base.find(params[:id])
   end
 
+  def show
+    @mailbox = base.find(params[:id])
+  end
+
   def create
     @mailbox = current_user.mailboxes.new(params[:mailbox])
     if @mailbox.save

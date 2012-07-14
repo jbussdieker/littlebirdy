@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120714104441) do
+ActiveRecord::Schema.define(:version => 20120714123545) do
 
   create_table "callers", :force => true do |t|
     t.string   "name"
@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(:version => 20120714104441) do
     t.string   "value"
     t.integer  "target_script_id"
     t.integer  "digits"
+    t.integer  "mailbox_id"
   end
 
   create_table "mailboxes", :force => true do |t|
@@ -50,6 +51,7 @@ ActiveRecord::Schema.define(:version => 20120714104441) do
     t.boolean  "new"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "mailbox_id"
   end
 
   create_table "numbers", :force => true do |t|

@@ -19,6 +19,11 @@
     <%= select("command", "target_script_id", current_user.scripts.collect {|p| [ p.name, p.id ] }, {:include_blank => 'None'}) %>
   </div>
 
+  <div class="field">
+    <%= f.label :mailbox_id %>
+    <%= select("command", "mailbox_id", current_user.mailboxes.collect {|p| [ p.name, p.id ] }, {:include_blank => 'None'}) %>
+  </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>

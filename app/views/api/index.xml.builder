@@ -7,7 +7,10 @@ xml.Response do
     if params["Digits"]
       @script.selections.each do |selection|
         if "#{selection.digits}" == "#{params["Digits"]}"
-          xml.Redirect "/api.xml?script=#{selection.target_script_id}"
+          if selection.target_script_id
+            xml.Redirect "/api.xml?script=#{selection.target_script_id}"
+          elsif selection.mailbox_id
+            xml.Redirect "/api/mailbox.xml"
           break
         end
         if selection == @script.commands.last

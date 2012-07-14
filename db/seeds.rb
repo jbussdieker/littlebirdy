@@ -8,6 +8,7 @@
 CommandType.create([
 	{ name: "Say" },
 	{ name: "Play" },
-	{ name: "Record" },
-	{ name: "Redirect" },
+	{ name: "Mailbox Banner" },
+	{ name: "Record Message" },
+	{ name: "Inbox" },
 ])
