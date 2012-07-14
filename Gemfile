@@ -8,6 +8,7 @@ gem 'rails', '3.2.6'
 gem 'sqlite3'
 gem 'devise'
 gem 'twilio-ruby'
+gem 'acts_as_list'
 
 
 # Gems used only for assets and not required
