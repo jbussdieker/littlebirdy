@@ -3,9 +3,16 @@
 </div>
 
 <table class="table">
+  <tr>
+    <th>Name</th>
+    <% if admin? %><th>Owned By</th><% end %>
+    <th></th>
+    <th></th>
+  </tr>
   <% @mailboxes.each do |mailbox| %>
     <tr>
       <td><%= mailbox.name %></td>
+      <% if admin? %><td><%= mailbox.user.name %></td><% end %>
       <td><%= link_to "Edit", edit_mailbox_path(mailbox) %></td>
       <td><%= link_to "Delete", mailbox, confirm: 'Are you sure?', method: :delete %></td>
     </tr>

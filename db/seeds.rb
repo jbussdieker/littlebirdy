@@ -5,3 +5,9 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+CommandType.create([
+	{ name: "Say" },
+	{ name: "Play" },
+	{ name: "Record" },
+	{ name: "Redirect" },
+])

@@ -1,0 +1,21 @@
+<div class="well">
+  <%= link_to "New", new_script_path, class: "btn" %>
+</div>
+
+<table class="table">
+  <tr>
+    <th>Name</th>
+    <% if admin? %><th>Owned By</th><% end %>
+    <th></th>
+    <th></th>
+  </tr>
+  <% @scripts.each do |script| %>
+    <tr>
+      <td><%= script.name %></td>
+      <% if admin? %><td><%= script.user.name %></td><% end %>
+      <td><%= link_to "Edit", edit_script_path(script) %></td>
+      <td><%= link_to "Delete", script, confirm: 'Are you sure?', method: :delete %></td>
+    </tr>
+  <% end %>
+</table>
+

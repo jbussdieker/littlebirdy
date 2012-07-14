@@ -1,6 +1,16 @@
 class MailboxesController < ApplicationController
+  before_filter :authenticate_user!
+
+  def base
+    if current_user.admin
+      Mailbox
+    else
+      current_user.mailboxes
+    end
+  end
+
   def index
-    @mailboxes = current_user.mailboxes
+    @mailboxes = base.all
   end
 
   def new
@@ -8,17 +18,29 @@ class MailboxesController < ApplicationController
   end
 
   def edit
-    @mailbox = current_user.mailboxes.find(params[:id])
+    @mailbox = base.find(params[:id])
   end
 
   def create
     @mailbox = current_user.mailboxes.new(params[:mailbox])
-    @mailbox.save
-    redirect_to mailboxes_path
+    if @mailbox.save
+      redirect_to mailboxes_path
+    else
+      render :action => "new"
+    end
+  end
+
+  def update
+    @mailbox = base.find(params[:id])
+    if @mailbox.update_attributes(params[:mailbox])
+      redirect_to mailboxes_path
+    else
+      render :action => "edit"
+    end
   end
 
   def destroy
-    @mailbox = current_user.mailboxes.find(params[:id])
+    @mailbox = base.find(params[:id])
     @mailbox.delete
     redirect_to mailboxes_path
   end

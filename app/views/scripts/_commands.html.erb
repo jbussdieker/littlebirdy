@@ -1,0 +1,38 @@
+<h2>Commands</h2>
+
+<div class="nav">
+  <%= link_to "New", new_script_command_path(@script), class: "btn" %>
+</div>
+
+<table class="table">
+  <tr>
+    <th></th>
+    <th>Name</th>
+    <th>Value</th>
+    <th>Selection</th>
+    <th>Script</th>
+    <th></th>
+    <th></th>
+  </tr>
+  <% @commands.each do |command| %>
+    <tr>
+      <td style="width: 32px">
+        <% if command != @commands.first %>
+          <%= link_to "", move_script_command_path(@script, command, direction: "move_higher"), method: :put, class: "icon-circle-arrow-up" %>
+        <% else %>
+          <i class="icon-blank"></i>
+        <% end %>
+        <% if command != @commands.last %>
+          <%= link_to "", move_script_command_path(@script, command, direction: "move_lower"), method: :put, class: "icon-circle-arrow-down" %>
+        <% end %>
+      </td>
+      <td><%= command.command_type %></td>
+      <td><%= command.value %></td>
+      <td><%= command.digits %></td>
+      <td><%= link_to command.target, edit_script_path(command.target) if command.target %></td>
+      <td><%= link_to "Edit", edit_script_command_path(@script, command) %></td>
+      <td><%= link_to "Delete", script_command_path(@script, command), confirm: 'Are you sure?', method: :delete %></td>
+    </tr>
+  <% end %>
+</table>
+

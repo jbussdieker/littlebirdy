@@ -1,0 +1,23 @@
+<h2>Selections</h2>
+
+<div class="nav">
+  <%= link_to "New", new_script_selection_path(@script), class: "btn" %>
+</div>
+
+<table class="table">
+  <tr>
+    <th>Value</th>
+    <th>Script</th>
+    <th></th>
+    <th></th>
+  </tr>
+  <% @selections.each do |selection| %>
+    <tr>
+      <td><%= selection.value %></td>
+      <td><%= selection.target.name %></td>
+      <td><%= link_to "Edit", edit_script_selection_path(@script, selection) %></td>
+      <td><%= link_to "Delete", script_selection_path(@script, selection), confirm: 'Are you sure?', method: :delete %></td>
+    </tr>
+  <% end %>
+</table>
+

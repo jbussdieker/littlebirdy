@@ -3,10 +3,18 @@
 </div>
 
 <table class="table">
+  <tr>
+    <th>Name</th>
+    <th>Number</th>
+    <% if admin? %><th>Owned By</th><% end %>
+    <th></th>
+    <th></th>
+  </tr>
   <% @numbers.each do |number| %>
     <tr>
       <td><%= number.name %></td>
       <td><%= number.number %></td>
+      <% if admin? %><td><%= number.user.name %></td><% end %>
       <td><%= link_to "Edit", edit_number_path(number) %></td>
       <td><%= link_to "Delete", number, confirm: 'Are you sure?', method: :delete %></td>
     </tr>

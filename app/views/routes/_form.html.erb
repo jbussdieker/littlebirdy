@@ -1,0 +1,25 @@
+<%= form_for(@route) do |f| %>
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+
+  <h4>When</h4>
+  <div class="field">
+    <%= select("route", "caller_id", current_user.callers.collect {|p| [ p.name, p.id ] }, {:include_blank => 'None'}) %>
+  </div>
+
+  <h4>calls</h4>
+  <div class="field">
+    <%= select("route", "number_id", current_user.numbers.collect {|p| [ p.name, p.id ] }, {:include_blank => 'None'}) %>
+  </div>
+
+  <h4>run</h4>
+  <div class="field">
+    <%= select("route", "script_id", current_user.scripts.collect {|p| [ p.name, p.id ] }, {:include_blank => 'None'}) %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

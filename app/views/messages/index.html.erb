@@ -1,0 +1,14 @@
+<table class="table">
+  <% @messages.each do |message| %>
+    <tr>
+      <td><%= "New" if message.new %></td>
+      <td><%= message.created_at %></td>
+      <td>
+        <audio controls="play">
+          <source src="<%= message.url %>" type="audio/mp3" />
+          No audio support!
+        </audio>
+      </td>
+    </tr>
+  <% end %>
+</table>

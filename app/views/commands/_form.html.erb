@@ -1,0 +1,25 @@
+<%= form_for([@script, @command]) do |f| %>
+  <div class="field">
+    <%= f.label :command_type %>
+    <%= select("command", "command_type_id", CommandType.all.collect {|p| [ p.name, p.id ] }, {:include_blank => 'None'}) %>
+  </div>
+
+  <div class="field">
+    <%= f.label :value %>
+    <%= f.text_field :value %>
+  </div>
+
+  <div class="field">
+    <%= f.label :digits %>
+    <%= f.number_field :digits %>
+  </div>
+
+  <div class="field">
+    <%= f.label :target_script_id %>
+    <%= select("command", "target_script_id", current_user.scripts.collect {|p| [ p.name, p.id ] }, {:include_blank => 'None'}) %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

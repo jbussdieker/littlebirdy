@@ -1,8 +1,16 @@
 class NumbersController < ApplicationController
   before_filter :authenticate_user!
 
+  def base
+    if current_user.admin
+      Number
+    else
+      current_user.numbers
+    end
+  end
+
   def index
-    @numbers = current_user.numbers
+    @numbers = base.all
   end
 
   def new
@@ -20,11 +28,11 @@ class NumbersController < ApplicationController
   end
 
   def edit
-    @number = current_user.numbers.find(params[:id])
+    @number = base.find(params[:id])
   end
 
   def update
-    @number = current_user.numbers.find(params[:id])
+    @number = base.find(params[:id])
     if @number.update_attributes(params[:number])
       redirect_to numbers_path, notice: 'Number was successfully updated.'
     else
@@ -39,7 +47,7 @@ class NumbersController < ApplicationController
   end
 
   def destroy
-    @number = current_user.numbers.find(params[:id])
+    @number = base.find(params[:id])
     @number.delete
     redirect_to numbers_path
   end

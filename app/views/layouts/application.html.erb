@@ -29,6 +29,15 @@
                   <li class="<%= 'active' if params[:controller] == 'mailboxes' %>">
                     <%= link_to 'Mailboxes', mailboxes_path %>
                   </li>
+                  <li class="<%= 'active' if params[:controller] == 'callers' %>">
+                    <%= link_to 'Callers', callers_path %>
+                  </li>
+                  <li class="<%= 'active' if params[:controller] == 'scripts' %>">
+                    <%= link_to 'Scripts', scripts_path %>
+                  </li>
+                  <li class="<%= 'active' if params[:controller] == 'routes' %>">
+                    <%= link_to 'Routes', routes_path %>
+                  </li>
                 <% else %>
                   <li>
                     <%= link_to('Login', new_user_session_path) %>

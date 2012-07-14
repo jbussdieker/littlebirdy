@@ -1,0 +1,23 @@
+<div class="well">
+  <%= link_to "New", new_caller_path, class: "btn" %>
+</div>
+
+<table class="table">
+  <tr>
+    <th>Name</th>
+    <th>Number</th>
+    <% if admin? %><th>Owned By</th><% end %>
+    <th></th>
+    <th></th>
+  </tr>
+  <% @callers.each do |caller| %>
+    <tr>
+      <td><%= caller.name %></td>
+      <td><%= caller.number %></td>
+      <% if admin? %><td><%= caller.user.name %></td><% end %>
+      <td><%= link_to "Edit", edit_caller_path(caller) %></td>
+      <td><%= link_to "Delete", caller, confirm: 'Are you sure?', method: :delete %></td>
+    </tr>
+  <% end %>
+</table>
+

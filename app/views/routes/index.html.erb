@@ -1,0 +1,29 @@
+<div class="well">
+  <%= link_to "New", new_route_path, class: "btn" %>
+</div>
+
+<table class="table">
+  <tr>
+    <th>Name</th>
+    <th>When</th>
+    <th>Calls</th>
+    <th>Run</th>
+    <% if admin? %><th>Owned By</th><% end %>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+  <% @routes.each do |route| %>
+    <tr>
+      <td><%= route.name %></td>
+      <td><%= route.caller %></td>
+      <td><%= route.number %></td>
+      <td><%= route.script %></td>
+      <% if admin? %><td><%= route.user.name %></td><% end %>
+      <td><%= link_to "Test", "/api.xml?Caller=#{u route.caller.number}&Called=#{u route.number.number}" %></td>
+      <td><%= link_to "Edit", edit_route_path(route) %></td>
+      <td><%= link_to "Delete", route, confirm: 'Are you sure?', method: :delete %></td>
+    </tr>
+  <% end %>
+</table>
+

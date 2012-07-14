@@ -5,6 +5,17 @@ Littlebirdy::Application.routes.draw do
 
   resources :numbers
   resources :mailboxes
+  resources :messages
+  resources :callers
+  resources :routes
+  resources :scripts do
+    resources :selections
+    resources :commands do
+      member do
+        put 'move'
+      end
+    end
+  end
 
   match 'api(/:action)' => 'api#index'
 
