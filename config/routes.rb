@@ -4,6 +4,7 @@ Littlebirdy::Application.routes.draw do
   root :to => "home#index"
 
   resources :numbers
+  resources :mailboxes
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

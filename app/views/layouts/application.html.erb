@@ -26,6 +26,9 @@
                   <li class="<%= 'active' if params[:controller] == 'numbers' %>">
                     <%= link_to 'Numbers', numbers_path %>
                   </li>
+                  <li class="<%= 'active' if params[:controller] == 'mailboxes' %>">
+                    <%= link_to 'Mailboxes', mailboxes_path %>
+                  </li>
                 <% else %>
                   <li>
                     <%= link_to('Login', new_user_session_path) %>
