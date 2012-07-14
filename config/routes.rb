@@ -6,6 +6,8 @@ Littlebirdy::Application.routes.draw do
   resources :numbers
   resources :mailboxes
 
+  match 'api(/:action)' => 'api#index'
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
