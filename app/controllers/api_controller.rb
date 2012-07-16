@@ -1,32 +1,33 @@
 class ApiController < ApplicationController
   before_filter :read_call_info
   
+  def reject
+    render :xml => "<Response><Reject/></Response>"
+  end
+
   def read_call_info
     @number = Number.where(:number => params["Called"]).find(:first)
-    if !@number
-      render :xml => "<Response><Reject/></Response>"
-      return false
-    end
-
-    @owner = @number.user
-
-    @caller = @owner.callers.where(:number => params["Caller"]).find(:first)
-    if !@caller
-      render :xml => "<Response><Reject/></Response>"
-      return false
-    end
-
-    @route = @owner.routes.where(:caller_id => @caller, :number_id => @number).find(:first)
+    return reject if !@number
+    @caller = @number.user.callers.where(:number => params["Caller"]).find(:first)
+    return reject if !@caller
+    @route = @number.user.routes.where(:caller_id => @caller, :number_id => @number).find(:first)
+    return reject if !@route
     @script = @route.script
-    return true
   end
+
+  def index
+    if params[:script]
+      @script = Script.find(params[:script]) || @script
+    end
+  end
+
 
   def new_message
     Message.create(:url => params["RecordingUrl"], :new => true)
     redirect_to "/api.xml"
   end
 
-  def index
+  def mailbox
     if params[:script]
       @script = Script.find(params[:script]) || @script
     end

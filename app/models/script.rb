@@ -10,6 +10,6 @@ class Script < ActiveRecord::Base
   end
 
   def selections
-    commands.where("target_script_id IS NOT NULL")
+    commands.where("target_script_id IS NOT NULL or mailbox_id IS NOT NULL")
   end
 end
