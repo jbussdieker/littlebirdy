@@ -11,6 +11,7 @@ xml.Response do
             xml.Redirect "/api.xml?script=#{selection.target_script_id}"
           elsif selection.mailbox_id
             xml.Redirect "/api/mailbox.xml"
+          end
           break
         end
         if selection == @script.commands.last
@@ -23,14 +24,14 @@ xml.Response do
 
     if @script.has_input
       xml.Gather(:numDigits => 1) do
-        xml << render(:partial => "api/commands.xml")
+        xml << render(:formats => [:xml], :partial => "api/commands")
       end
     else
-      xml << render(:partial => "api/commands.xml")
+      xml << render(:formats => [:xml], :partial => "api/commands")
     end
 
     if @script.selections.count > 0
-      xml.Redirect "/api.xml?script=#{@script.selections.last.target.id}"
+      xml.Redirect "/api.xml?script=#{@script.selections.last.target}"
     else
       xml.Redirect "/api.xml"
     end
